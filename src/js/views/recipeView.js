@@ -13,24 +13,23 @@ class RecipeView extends View {
   }
 
   decimalToFraction(decimal) {
-    const EPSILON = 1e-10; // Small value for precision
+    const MAX_ITERATIONS = 10000; // Maximum number of iterations to avoid infinite loops
     let numerator = 1;
     let denominator = 1;
-    let x = decimal;
+    let error = Math.abs(decimal - numerator / denominator);
 
-    while (Math.abs(decimal - numerator / denominator) > EPSILON) {
-      if (numerator / denominator < decimal) {
+    while (error > Number.EPSILON && MAX_ITERATIONS > 0) {
+      if (decimal > numerator / denominator) {
         numerator++;
-      } else {
+      } else if (decimal < numerator / denominator) {
         denominator++;
       }
+
+      error = Math.abs(decimal - numerator / denominator);
+      MAX_ITERATIONS--;
     }
 
-    // Format the fraction as a string
-    let fractionString =
-      numerator === denominator ? '1' : numerator + '/' + denominator;
-
-    return fractionString;
+    return `${numerator}/${denominator}`;
   }
 
   addHandlerUpdateServings(handler) {
