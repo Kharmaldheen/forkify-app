@@ -1,7 +1,7 @@
 import View from './view.js';
 
 import icons from 'url:../../img/icons.svg'; //parcel 2
-import { Fraction } from 'fractional';
+// import { Fraction } from 'fractional';
 
 class RecipeView extends View {
   _parentElement = document.querySelector('.recipe');
@@ -10,6 +10,26 @@ class RecipeView extends View {
 
   addHanderRender(handler) {
     ['hashchange', 'load'].forEach(ev => window.addEventListener(ev, handler));
+  }
+
+  decimalToFraction(decimal) {
+    const EPSILON = 1e-10; // Small value for precision
+    let numerator = 1;
+    let denominator = 1;
+    let x = decimal;
+
+    while (Math.abs(decimal - numerator / denominator) > EPSILON) {
+      if (numerator / denominator < decimal) {
+        numerator++;
+      } else {
+        denominator++;
+      }
+    }
+
+    // Format the fraction as a string
+    let fractionString =
+      numerator === denominator ? '1' : numerator + '/' + denominator;
+    return fractionString;
   }
 
   addHandlerUpdateServings(handler) {
@@ -138,7 +158,7 @@ class RecipeView extends View {
       <use href="${icons}#icon-check"></use>
     </svg>
     <div class="recipe__quantity">${
-      ingredient.quantity ? new Fraction(ingredient.quantity).toString() : ''
+      ingredient.quantity ? this.decimalToFraction(ingredient.quantity) : ''
     }</div>
     <div class="recipe__description">
       <span class="recipe__unit">${ingredient.unit}</span>
