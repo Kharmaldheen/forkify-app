@@ -139,6 +139,10 @@ const controlAddRecipe = async function (newRecipe) {
   }
 };
 
+const newFeature = function () {
+  console.log('welcome to the Application');
+};
+
 //////PUBLISHER-SUBSCRIBER PATTERN
 const init = function () {
   bookmarksView.addHandlerRender(controlBookmarks);
@@ -148,5 +152,6 @@ const init = function () {
   searchView.addHandlerSearch(controlSearchResults);
   paginationView.addHandlerbtnsClick(controlPagination);
   addRecipeView.addHandlerUpload(controlAddRecipe);
+  newFeature();
 };
 init();
