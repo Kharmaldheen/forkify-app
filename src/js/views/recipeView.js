@@ -2,7 +2,7 @@ import View from './view.js';
 
 import icons from 'url:../../img/icons.svg'; //parcel 2
 // import { Fraction } from 'fractional';
-import Decimal from 'decimal.js';
+// import Decimal from 'decimal.js';
 
 class RecipeView extends View {
   _parentElement = document.querySelector('.recipe');
@@ -132,12 +132,12 @@ class RecipeView extends View {
         </div>`;
   }
 
-  convertDecimal(decimal) {
-    const fraction = new Decimal(decimal).toFraction();
-    const denomenator = fraction.denominator;
-    const numerator = fraction.numerator;
-    return `${numerator}/${denomenator}`;
-  }
+  // convertDecimal(decimal) {
+  //   const fraction = new Decimal(decimal).toFraction();
+  //   const denomenator = fraction.denominator;
+  //   const numerator = fraction.numerator;
+  //   return `${numerator}/${denomenator}`;
+  // }
 
   _generateMarkUpIngredients(ingredient) {
     return `
