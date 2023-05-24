@@ -2,12 +2,43 @@ import View from './view.js';
 
 import icons from 'url:../../img/icons.svg'; //parcel 2
 // import { Fraction } from 'fractional';
-import Decimal from 'decimal.js';
+// import Decimal from 'decimal.js';
+function 
 
 class RecipeView extends View {
   _parentElement = document.querySelector('.recipe');
   _errorMessage = `We couldn't find that recipe. Please try another one`;
   _sucessMessage = '';
+
+  findGCD(a, b) {
+    if (b === 0) {
+      return a;
+    }
+    return findGCD(b, a % b);
+  }
+
+  decimalToFraction(decimal) {
+    let numerator = 1;
+    let denominator = 1;
+    let error = Math.abs(decimal - numerator / denominator);
+  
+    while (error > Number.EPSILON) {
+      if (decimal > numerator / denominator) {
+        numerator++;
+      } else if (decimal < numerator / denominator) {
+        denominator++;
+      }
+  
+      error = Math.abs(decimal - numerator / denominator);
+    }
+  
+    const gcd = this.findGCD(numerator, denominator);
+    const simplifiedNumerator = numerator / gcd;
+    const simplifiedDenominator = denominator / gcd;
+  
+    return `${simplifiedNumerator}/${simplifiedDenominator}`;
+  }
+  
 
   addHanderRender(handler) {
     ['hashchange', 'load'].forEach(ev => window.addEventListener(ev, handler));
@@ -140,7 +171,7 @@ class RecipeView extends View {
     </svg>
     <div class="recipe__quantity">${
       ingredient.quantity
-        ? new Decimal(ingredient.quantity).toFraction().simplify().toString()
+        ? this.decimalToFraction(ingredient.quantity)
         : ''
     }</div>
     <div class="recipe__description">
