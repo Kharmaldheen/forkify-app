@@ -1,7 +1,7 @@
 import View from './view.js';
 
 import icons from 'url:../../img/icons.svg'; //parcel 2
-// import Fraction from 'fractional';
+import { Fraction } from 'url:../../../node_modules/fractional';
 
 class RecipeView extends View {
   _parentElement = document.querySelector('.recipe');
@@ -30,33 +30,6 @@ class RecipeView extends View {
       if (!btnClicked) return;
       handler();
     });
-  }
-
-  decimalToFraction(decimal) {
-    const MAX_DENOMINATOR = 1000000;
-    let numerator = decimal;
-    let denominator = 1;
-
-    while (
-      Math.abs(numerator - Math.round(numerator)) > 1e-10 &&
-      denominator <= MAX_DENOMINATOR
-    ) {
-      numerator = decimal * denominator;
-      denominator++;
-    }
-
-    const gcd = this.findGCD(Math.round(numerator), denominator - 1);
-    const simplifiedNumerator = Math.round(numerator) / gcd;
-    const simplifiedDenominator = (denominator - 1) / gcd;
-
-    return `${simplifiedNumerator}/${simplifiedDenominator}`;
-  }
-
-  findGCD(a, b) {
-    if (b === 0) {
-      return a;
-    }
-    return findGCD(b, a % b);
   }
 
   _generateMarkup() {
@@ -165,7 +138,7 @@ class RecipeView extends View {
       <use href="${icons}#icon-check"></use>
     </svg>
     <div class="recipe__quantity">${
-      ingredient.quantity ? this.decimalToFraction(ingredient.quantity) : ''
+      ingredient.quantity ? new Fraction(ingredient.quantity).toString() : ''
     }</div>
     <div class="recipe__description">
       <span class="recipe__unit">${ingredient.unit}</span>
