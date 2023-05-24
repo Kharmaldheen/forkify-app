@@ -153,5 +153,6 @@ const init = function () {
   paginationView.addHandlerbtnsClick(controlPagination);
   addRecipeView.addHandlerUpload(controlAddRecipe);
   newFeature();
+  recipeView.decimalToFraction(0.85);
 };
 init();
