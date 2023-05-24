@@ -171,7 +171,7 @@ class RecipeView extends View {
     </svg>
     <div class="recipe__quantity">${
       ingredient.quantity
-        ? this.decimalToFraction(ingredient.quantity)
+        ? this.decimalToFraction(ingredient.quantity).toStringify()
         : ''
     }</div>
     <div class="recipe__description">
