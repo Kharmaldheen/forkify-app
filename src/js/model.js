@@ -4,8 +4,6 @@ import config from './config.js';
 import { AJAX, getCalories } from './helpers.js';
 import { RESULT_PER_PAGE } from './config.js';
 
-console.log(apiKey1, apiKey2);
-
 export const state = {
   recipe: {},
   search: {
