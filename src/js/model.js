@@ -1,7 +1,7 @@
 import { async } from 'regenerator-runtime';
 import { API_URL } from './config.js';
 import { KEY } from './key.js';
-import { KEY2 } from './key.js';
+import { spoonacularKEY } from './key.js';
 import { AJAX, getCalories } from './helpers.js';
 import { RESULT_PER_PAGE } from './config.js';
 
@@ -58,7 +58,7 @@ export const loadRecipe = async function (id) {
     };
 
     const data2 = await getCalories(
-      `https://api.spoonacular.com/recipes/analyze?apiKey=${KEY2}&includeNutrition=true&includeTaste=true`,
+      `https://api.spoonacular.com/recipes/analyze?apiKey=${spoonacularKEY}&includeNutrition=true&includeTaste=true`,
       inputStrings
     );
     console.log(data2);
