@@ -1,5 +1,5 @@
 import { async } from 'regenerator-runtime';
-import { API_URL, apiKey1, apiKey2 } from './config.js';
+import { API_URL, config } from './config.js';
 import { AJAX, getCalories } from './helpers.js';
 import { RESULT_PER_PAGE } from './config.js';
 
@@ -34,7 +34,7 @@ const createRecipeObject = function (data) {
 
 export const loadRecipe = async function (id) {
   try {
-    const data = await AJAX(`${API_URL}${id}?key=${apiKey1}`);
+    const data = await AJAX(`${API_URL}${id}?key=${config.apiKey1}`);
 
     state.recipe = createRecipeObject(data);
 
@@ -58,7 +58,7 @@ export const loadRecipe = async function (id) {
     };
 
     const data2 = await getCalories(
-      `https://api.spoonacular.com/recipes/analyze?apiKey=${apiKey2}&includeNutrition=true&includeTaste=true`,
+      `https://api.spoonacular.com/recipes/analyze?apiKey=${config.apiKey2}&includeNutrition=true&includeTaste=true`,
       inputStrings
     );
     console.log(data2);
@@ -74,7 +74,7 @@ export const loadRecipe = async function (id) {
 export const loadSearchResults = async function (query) {
   try {
     state.search.query = query;
-    const data = await AJAX(`${API_URL}?search=${query}&key=${apiKey1}`);
+    const data = await AJAX(`${API_URL}?search=${query}&key=${config.apiKey1}`);
     console.log(data);
     const { recipes } = data.data;
     state.search.results = recipes.map(recipe => {
@@ -180,7 +180,7 @@ export const uploadRecipe = async function (newRecipe) {
       servings: +newRecipe.servings,
       ingredients,
     };
-    const data = await AJAX(`${API_URL}?key=${apiKey1}`, recipe);
+    const data = await AJAX(`${API_URL}?key=${config.apiKey1}`, recipe);
     console.log(data);
 
     state.recipe = createRecipeObject(data);
