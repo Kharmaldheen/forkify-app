@@ -1,10 +1,13 @@
-import dotenv from 'dotenv';
-dotenv.config();
+import { config } from 'dotenv-flow';
+config();
 
-const config = {
-  apiKey1: process.env.API_KEY1,
-  apiKey2: process.env.API_KEY2,
-};
+const apiKey1 = process.env.API_KEY1;
+const apiKey2 = process.env.API_KEY2;
+
+export default {
+  apiKey1,
+  apiKey2,
+}
 
 export const API_URL = 'https://forkify-api.herokuapp.com/api/v2/recipes/';
 
