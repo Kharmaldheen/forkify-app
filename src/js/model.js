@@ -1,6 +1,6 @@
 import { async } from 'regenerator-runtime';
 import { API_URL } from './config.js';
-import { KEY, KEY2 } from './key.js';
+import { KEY, KEY2 } from './key.js'; //key.js is in the gitignore
 import { AJAX, getCalories } from './helpers.js';
 import { RESULT_PER_PAGE } from './config.js';
 
