@@ -1,5 +1,6 @@
 import { async } from 'regenerator-runtime';
-import { API_URL, KEY, KEY2 } from './config.js';
+import { API_URL } from './config.js';
+import { KEY, KEY2 } from './key.js';
 import { AJAX, getCalories } from './helpers.js';
 import { RESULT_PER_PAGE } from './config.js';
 
