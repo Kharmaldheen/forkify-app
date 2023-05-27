@@ -3,8 +3,6 @@ import { API_URL, API_KEY1, API_KEY2 } from './config.js';
 import { AJAX, getCalories } from './helpers.js';
 import { RESULT_PER_PAGE } from './config.js';
 
-console.log(config.apiKey1, config.apiKey2);
-
 export const state = {
   recipe: {},
   search: {
